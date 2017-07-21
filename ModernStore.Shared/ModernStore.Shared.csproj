@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{71D8BB4C-5BFE-4D72-9A1D-E742B82C6002}</ProjectGuid>
+    <ProjectGuid>{A676B551-4F14-4A56-9076-B987D24F567A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ModernStore.Domain</RootNamespace>
-    <AssemblyName>ModernStore.Domain</AssemblyName>
+    <RootNamespace>ModernStore.Shared</RootNamespace>
+    <AssemblyName>ModernStore.Shared</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -38,15 +38,8 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Customer.cs" />
-    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\Entity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ModernStore.Shared\ModernStore.Shared.csproj">
-      <Project>{a676b551-4f14-4a56-9076-b987d24f567a}</Project>
-      <Name>ModernStore.Shared</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
