@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModernStore.Domain.Entities;
+using ModernStore.Domain.ValueObjects;
+using ModernStore.Domain.Repositories;
+using ModernStore.Domain.Commands;
+using ModernStore.Domain.CommandHandlers;
 
 namespace ModernStore
 {
@@ -11,30 +15,83 @@ namespace ModernStore
     {
         static void Main(string[] args)
         {
-            var user = new User("andremorata", "andremorata");
-            var customer = new Customer(
-                "Andre",
-                "Morata",
-                "andremorata@gmail.com",
-                user
-            );
+            var command = new RegisterOrderCommand
+            {
+                Customer = Guid.NewGuid(),
+                DeliveryFee = 10,
+                Discount = 5,
+                Items = new List<RegisterOrderItemCommand>
+                {
+                    new RegisterOrderItemCommand() { Product = Guid.NewGuid(), Quantity = 2 },
+                    new RegisterOrderItemCommand() { Product = Guid.NewGuid(), Quantity = 5 }
+                }
+            };
 
-            var mouse = new Product("Mouse", 299, 50, "mouse.png");
-            var mousepad = new Product("MousePad", 50, 50, "mousepad.png");
-            
-            var order = new Order(customer, 5, 10);
-            order.AddItem(new OrderItem(mouse, 2));
-            order.AddItem(new OrderItem(mousepad, 2));
-            
-            Console.WriteLine($"Nro Pedido: {order.Number}");
-            Console.WriteLine($"Data: {order.CreateDate :dd/MM/yyyy}");
-            Console.WriteLine($"Desconto: {order.Discount}");
-            Console.WriteLine($"Taxa de Entrega: {order.DeliveryFee}");
-            Console.WriteLine($"Subtotal: {order.SubTotal()}");
-            Console.WriteLine($"Total: {order.Total()}");
-            Console.WriteLine($"Cliente: {customer.FirstName} {customer.LastName}");
-            
+            GenereateOrder(
+                new FakeCustomerRepository(),
+                new FakeProductRepository(),
+                new FakeOrderRepository(),
+                command);
+
             Console.ReadKey();
+        }
+
+        private static void GenereateOrder(
+            ICustomerRepository customerRepository,
+            IProductRepository productRepository,
+            IOrderRepository orderRepository,
+            RegisterOrderCommand command)
+        {
+
+            var handler = new OrderCommandHandler(
+                customerRepository,
+                productRepository,
+                orderRepository);
+
+            handler.Handle(command);
+
+            if (handler.IsValid())
+                Console.WriteLine("Pedido cadastrado com sucesso");
+            
+        }
+    }
+
+    public class FakeProductRepository : IProductRepository
+    {
+        public Product Get(Guid id)
+        {
+            return new Product(
+                "Mouse", 299, 5, "mouse.png");
+        }
+
+        public IEnumerable<Product> Get(IEnumerable<Guid> ids)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class FakeCustomerRepository : ICustomerRepository
+    {
+        public Customer Get(Guid id)
+        {
+            return null;
+        }
+
+        public Customer GetByUserId(Guid id)
+        {
+            return new Customer(
+                new Name("Andre", "Morata"),
+                new Email("andremorata@gmail.com"),
+                new Document("30260406813"),
+                new User("andremorata", "andremorata"));
+        }
+    }
+
+    public class FakeOrderRepository : IOrderRepository
+    {
+        public void Save(Order order)
+        {
+            
         }
     }
 }
