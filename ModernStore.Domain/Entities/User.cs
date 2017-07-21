@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ModernStore.Domain.Entities
 {
@@ -13,7 +9,7 @@ namespace ModernStore.Domain.Entities
             Id = Guid.NewGuid();
             Username = username;
             Password = password;
-            Active = false;
+            Active = true;
         }
 
         public Guid Id { get; private set; }
