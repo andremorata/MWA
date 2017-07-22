@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernStore.Domain", "ModernStore.Domain\ModernStore.Domain.csproj", "{71D8BB4C-5BFE-4D72-9A1D-E742B82C6002}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernStore.Console", "ModernStore.Console\ModernStore.Console.csproj", "{85A9A263-C9D2-4689-B587-15DBE4201119}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernStore.Shared", "ModernStore.Shared\ModernStore.Shared.csproj", "{A676B551-4F14-4A56-9076-B987D24F567A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernStore.Domain.Tests", "ModernStore.Domain.Tests\ModernStore.Domain.Tests.csproj", "{3ADD7DB7-73F9-4275-AD15-52EDC1961AD6}"
@@ -21,10 +19,6 @@ Global
 		{71D8BB4C-5BFE-4D72-9A1D-E742B82C6002}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71D8BB4C-5BFE-4D72-9A1D-E742B82C6002}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71D8BB4C-5BFE-4D72-9A1D-E742B82C6002}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85A9A263-C9D2-4689-B587-15DBE4201119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85A9A263-C9D2-4689-B587-15DBE4201119}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85A9A263-C9D2-4689-B587-15DBE4201119}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85A9A263-C9D2-4689-B587-15DBE4201119}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A676B551-4F14-4A56-9076-B987D24F567A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A676B551-4F14-4A56-9076-B987D24F567A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A676B551-4F14-4A56-9076-B987D24F567A}.Release|Any CPU.ActiveCfg = Release|Any CPU

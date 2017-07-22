@@ -1,16 +1,15 @@
 ﻿using ModernStore.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ModernStore.Domain.Repositories
 {
     public interface ICustomerRepository
     {
         Customer Get(Guid id);
+        Customer Get(string document);
         Customer GetByUserId(Guid id);
-
+        void Save(Customer customer);
+        void Update(Customer customer);
+        bool DocumentExists(string document);
     }
 }

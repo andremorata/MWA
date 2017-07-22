@@ -31,6 +31,10 @@ namespace ModernStore.Domain.Entities
             Name = name;
             BirthDate = birthDate;
         }
-        
+
+        internal void Update(Name name, object birthDate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
