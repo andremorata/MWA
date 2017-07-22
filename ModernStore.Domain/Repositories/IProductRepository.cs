@@ -8,7 +8,6 @@ namespace ModernStore.Domain.Repositories
     public interface IProductRepository
     {
         Product Get(Guid id);
-
-        IEnumerable<Product> Get(IEnumerable<Guid> ids);
+        
     }
 }
