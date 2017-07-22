@@ -37,13 +37,10 @@ namespace ModernStore.Domain.Commands.Handlers
             var customer = new Customer(name, email, document, user);
 
             AddNotifications(customer.Notifications);
-            AddNotifications(name.Notifications);
-            AddNotifications(email.Notifications);
-            AddNotifications(document.Notifications);
-            AddNotifications(user.Notifications);
 
-            if (IsValid())
-                _customerRepository.Save(customer);
+            if (!IsValid()) return null;
+
+            _customerRepository.Save(customer);
 
             _emailService.Send(
                 customer.Name.ToString(),

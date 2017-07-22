@@ -10,11 +10,11 @@ using Dapper;
 
 namespace ModernStore.Infra.Repositories
 {
-    public class Productrepository : IProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly ModernStoreDataContext _context;
 
-        public Productrepository(ModernStoreDataContext context)
+        public ProductRepository(ModernStoreDataContext context)
         {
             _context = context;
         }

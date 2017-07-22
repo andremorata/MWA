@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="WelcomeEmailBody" xml:space="preserve">
-    <value>Olá {1}! &lt;br&gt;Seja bem vindo à Modern Store!</value>
+    <value>Olá {0}! &lt;br&gt;Seja bem vindo à Modern Store!</value>
   </data>
   <data name="WelcomeEmailTitle" xml:space="preserve">
-    <value>Bem vindo, {1}</value>
+    <value>Bem vindo, {0}</value>
   </data>
 </root>

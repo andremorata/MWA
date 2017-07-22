@@ -6,7 +6,7 @@ namespace ModernStore.Infra.Contexts
 {
     public class ModernStoreDataContext : DbContext
     {
-        public ModernStoreDataContext(): base("ModernStoreConnectionString")
+        public ModernStoreDataContext(): base(@"Data Source=(localdb)\MSSQLLocalDB;Database=ModernStoreConnectionString;Integrated Security=SSPI;")
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
