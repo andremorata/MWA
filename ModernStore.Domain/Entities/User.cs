@@ -1,12 +1,14 @@
 ﻿using FluentValidator;
-using System;
+using ModernStore.Shared.Entities;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace ModernStore.Domain.Entities
 {
-    public class User : Notifiable
+    public class User : Entity
     {
+        protected User() { }
+        
         public User(string username, string password, string confirmPassword)
         {
             Username = username;

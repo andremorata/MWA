@@ -5,7 +5,7 @@ namespace ModernStore.Shared.Entities
 {
     public abstract class Entity: Notifiable
     {
-        public Entity()
+        protected Entity()
         {
             Id = Guid.NewGuid();
         }
