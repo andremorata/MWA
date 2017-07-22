@@ -4,6 +4,9 @@ using ModernStore.Infra.Contexts;
 using System;
 using System.Data.Entity;
 using System.Linq;
+using ModernStore.Domain.Commands.Results;
+using System.Data.SqlClient;
+using Dapper;
 
 namespace ModernStore.Infra.Repositories
 {
@@ -30,7 +33,36 @@ namespace ModernStore.Infra.Repositories
                 .FirstOrDefault(i => i.Id == id);
         }
 
-        public Customer Get(string document)
+        public GetCustomerCommandResult Get(string username)
+        {
+            //return _context.Customers
+            //    .Include(i => i.User)
+            //    .AsNoTracking()
+            //    .Select(x => new GetCustomerCommandResult()
+            //    {
+            //        Name = x.Name.ToString(),
+            //        Document = x.Document.Number,
+            //        Active = x.User.Active,
+            //        Email = x.Email.Address,
+            //        Username = x.User.Username,
+            //        Password = x.User.Password
+            //    })
+            //    .FirstOrDefault(i => i.Username == username);
+
+            using (var conn = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Database=ModernStoreConnectionString;Integrated Security=SSPI;"))
+            {
+                conn.Open();
+                return conn
+                    .Query<GetCustomerCommandResult>(
+                        @"  SELECT * 
+                            FROM GetCustomerInfoView 
+                            WHERE Active = 1 and Username = @username",
+                        new { username = username })
+                    .FirstOrDefault();
+            }
+        }
+
+        public Customer GetByDocumentNumber(string document)
         {
             return _context.Customers
                 .Include(i => i.User)
@@ -55,5 +87,6 @@ namespace ModernStore.Infra.Repositories
         {
             _context.Entry(customer).State = EntityState.Modified;
         }
+        
     }
 }
