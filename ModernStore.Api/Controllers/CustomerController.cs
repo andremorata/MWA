@@ -31,7 +31,7 @@ namespace ModernStore.Api.Controllers
         public async Task<IActionResult> Post([FromBody] RegisterCustomerCommand command)
         {
             var result = _handler.Handle(command);
-            return await Response(result, _handler.Notifications);
+            return await ApiResponse(result, _handler.Notifications);
         }
     }
 }

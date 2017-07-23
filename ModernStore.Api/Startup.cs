@@ -15,11 +15,15 @@ using ModernStore.Infra.Services;
 using ModernStore.Infra.Transactions;
 using System;
 using System.Text;
+using Microsoft.Extensions.Configuration;
+using ModernStore.Shared;
 
 namespace ModernStore.Api
 {
     public class Startup
     {
+
+        public IConfiguration Configuration { get; set; }
 
         private const string ISSUER = "3849a5da";
         private const string AUDIENCE = "efba68a75dd0";
@@ -27,6 +31,16 @@ namespace ModernStore.Api
 
         private readonly SymmetricSecurityKey _signingKey =
             new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SECRET_KEY));
+
+        public Startup(IHostingEnvironment env)
+        {
+            var configurationBuilder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            Configuration = configurationBuilder.Build();
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -107,6 +121,7 @@ namespace ModernStore.Api
             });
             app.UseMvc();
 
+            Runtime.ConnectionString = Configuration.GetConnectionString("CnnStr");
         }
     }
 }

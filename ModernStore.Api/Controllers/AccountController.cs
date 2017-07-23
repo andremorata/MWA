@@ -40,11 +40,11 @@ namespace ModernStore.Api.Controllers
         public async Task<IActionResult> Post([FromForm] AuthenticateUserCommand command)
         {
             if (command == null)
-                return await Response(null, new List<Notification> { new Notification("User", "Usuário ou senha inválidos.") });
+                return await ApiResponse(null, new List<Notification> { new Notification("User", "Usuário ou senha inválidos.") });
 
             var identity = await GetClaims(command);
             if (identity == null)
-                return await Response(null, new List<Notification> { new Notification("User", "Usuário ou senha inválidos.") });
+                return await ApiResponse(null, new List<Notification> { new Notification("User", "Usuário ou senha inválidos.") });
 
             //Basic user claims
             var claims = new List<Claim>()

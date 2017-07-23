@@ -7,6 +7,7 @@ using System.Linq;
 using ModernStore.Domain.Commands.Results;
 using System.Data.SqlClient;
 using Dapper;
+using ModernStore.Shared;
 
 namespace ModernStore.Infra.Repositories
 {
@@ -49,8 +50,7 @@ namespace ModernStore.Infra.Repositories
             //    })
             //    .FirstOrDefault(i => i.Username == username);
 
-            using (var conn = new SqlConnection(
-                @"Data Source=(localdb)\MSSQLLocalDB;Database=ModernStoreConnectionString;Integrated Security=SSPI;"))
+            using (var conn = new SqlConnection(Runtime.ConnectionString))
             {
                 conn.Open();
                 return conn
