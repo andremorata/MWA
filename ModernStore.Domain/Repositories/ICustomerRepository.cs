@@ -7,6 +7,7 @@ namespace ModernStore.Domain.Repositories
     public interface ICustomerRepository
     {
         Customer Get(Guid id);
+        Customer GetByUsername(string username);
         Customer GetByDocumentNumber(string document);
         GetCustomerCommandResult Get(string username);
         Customer GetByUserId(Guid id);

@@ -49,7 +49,8 @@ namespace ModernStore.Infra.Repositories
             //    })
             //    .FirstOrDefault(i => i.Username == username);
 
-            using (var conn = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Database=ModernStoreConnectionString;Integrated Security=SSPI;"))
+            using (var conn = new SqlConnection(
+                @"Data Source=(localdb)\MSSQLLocalDB;Database=ModernStoreConnectionString;Integrated Security=SSPI;"))
             {
                 conn.Open();
                 return conn
@@ -76,6 +77,15 @@ namespace ModernStore.Infra.Repositories
                 .Include(i => i.User)
                 .AsNoTracking()
                 .FirstOrDefault(i => i.User.Id == id);
+        }
+
+        public Customer GetByUsername(string username)
+        {
+            return _context
+                .Customers
+                .Include(i => i.User)
+                .AsNoTracking()
+                .FirstOrDefault(i => i.User.Username == username);
         }
 
         public void Save(Customer customer)

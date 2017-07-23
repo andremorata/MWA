@@ -11,7 +11,7 @@ namespace ModernStore.Api.Security
         public string Audience { get; set; }
         public DateTime NotBefore { get; set; } = DateTime.UtcNow;
         public DateTime IssuedAt { get; set; } = DateTime.UtcNow;
-        public TimeSpan ValidFor { get; set; } = TimeSpan.FromDays(30);
+        public TimeSpan ValidFor { get; set; } = TimeSpan.FromHours(2);
         public DateTime Expiration => IssuedAt.Add(ValidFor);
         public Func<Task<string>> JitGenerator => 
             () => Task.FromResult(Guid.NewGuid().ToString());
