@@ -1,5 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { Routes, RouterModule } from '@angular/router';
+
+// routes
+import { Routing, RoutingProviders } from './app.routing';
 
 // root
 import { AppComponent } from './app.component';
@@ -14,26 +20,32 @@ import { ProductListComponent } from './components/product-list/product-list.com
 
 // home page
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { LoginPageComponent } from './Pages/login-page/login-page.component';
-import { SignupPageComponent } from './Pages/signup-page/signup-page.component';
-import { CartPageComponent } from './Pages/cart-page/cart-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { SignupPageComponent } from './pages/signup-page/signup-page.component';
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
+import { ErrorPage404Component } from './pages/error-page404/error-page404.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeadBarComponent,
-    SubMenuComponent,
-    ProductListComponent,
-    FooterComponent,
-    HomePageComponent,
-    LoginPageComponent,
-    SignupPageComponent,
-    CartPageComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeadBarComponent,
+        SubMenuComponent,
+        FooterComponent,
+        ProductListComponent,
+        HomePageComponent,
+        LoginPageComponent,
+        SignupPageComponent,
+        CartPageComponent,
+        ErrorPage404Component
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpModule,
+        Routing
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
