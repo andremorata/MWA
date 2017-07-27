@@ -27,7 +27,7 @@ namespace ModernStore.Domain.Commands.Handlers
 
         public ICommandResult Handle(RegisterOrderCommand command)
         {
-            var customer = _customerRepository.GetByUserId(command.Customer);
+            var customer = _customerRepository.GetByUsername(command.Customer);
             var order = new Order(customer, command.DeliveryFee, command.Discount);
             foreach (var item in command.Items)
             {

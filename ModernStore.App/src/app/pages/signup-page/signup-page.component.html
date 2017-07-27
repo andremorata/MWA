@@ -4,48 +4,55 @@
             <h1 class="title pacifico larger-text">
                 Modern Web Store
             </h1>
-            <div class="columns is-multiline animated fadeInUp">
-                <div class="column is-half is-offset-one-quarter">
-                    <p class="control">
-                        <input type="text" class="input is-large" placeholder="Nome">
-                    </p>
+            <form [formGroup]="form">
+                <div class="notification is-danger" *ngIf="errors.length > 0">
+                    <ul>
+                        <li *ngFor="let item of errors">{{item.message}}</li>
+                    </ul>
                 </div>
-                <div class="column is-half is-offset-one-quarter">
-                    <p class="control">
-                        <input type="text" class="input is-large" placeholder="Sobrenome">
-                    </p>
+                <div class="columns is-multiline animated fadeInUp">
+                    <div class="column is-half is-offset-one-quarter">
+                        <p class="control">
+                            <input formControlName="firstName" type="text" class="input is-large" placeholder="Nome" [ngClass]="{'is-danger':!form.controls.firstName.valid && !form.controls.firstName.pristine}">
+                        </p>
+                    </div>
+                    <div class="column is-half is-offset-one-quarter">
+                        <p class="control">
+                            <input formControlName="lastName" type="text" class="input is-large" placeholder="Sobrenome" [ngClass]="{'is-danger':!form.controls.lastName.valid && !form.controls.lastName.pristine}">
+                        </p>
+                    </div>
+                    <div class="column is-half is-offset-one-quarter">
+                        <p class="control">
+                            <input formControlName="email" type="text" class="input is-large" placeholder="E-mail" [ngClass]="{'is-danger':!form.controls.email.valid && !form.controls.email.pristine}">
+                        </p>
+                    </div>
+                    <div class="column is-half is-offset-one-quarter">
+                        <p class="control">
+                            <input formControlName="document" appNumber maxlength="11" type="text" class="input is-large" placeholder="CPF" [ngClass]="{'is-danger':!form.controls.document.valid && !form.controls.document.pristine}">
+                        </p>
+                    </div>
+                    <div class="column is-half is-offset-one-quarter">
+                        <p class="control">
+                            <input formControlName="username" type="text" class="input is-large" placeholder="Usuário" [ngClass]="{'is-danger':!form.controls.username.valid && !form.controls.username.pristine}">
+                        </p>
+                    </div>
+                    <div class="column is-half is-offset-one-quarter">
+                        <p class="control">
+                            <input formControlName="password" type="password" class="input is-large" placeholder="Senha" [ngClass]="{'is-danger':!form.controls.password.valid && !form.controls.password.pristine}">
+                        </p>
+                    </div>
+                    <div class="column is-half is-offset-one-quarter">
+                        <p class="control">
+                            <input formControlName="confirmPassword" type="password" class="input is-large" placeholder="Confirmar senha" [ngClass]="{'is-danger':!form.controls.confirmPassword.valid && !form.controls.confirmPassword.pristine}">
+                        </p>
+                    </div>
+                    <div class="column is-half is-offset-one-quarter">
+                        <button class="button is-primary is-inverted is-outlined is-large is-fullwidth" (click)="submit()" [disabled]="!form.valid">CADASTRAR</button>
+                        <br>
+                        <a href="" class="button is-link">VOLTAR PARA A TELA DE LOGIN</a>
+                    </div>
                 </div>
-                <div class="column is-half is-offset-one-quarter">
-                    <p class="control">
-                        <input type="text" class="input is-large" placeholder="E-mail">
-                    </p>
-                </div>
-                <div class="column is-half is-offset-one-quarter">
-                    <p class="control">
-                        <input type="text" class="input is-large" placeholder="CPF">
-                    </p>
-                </div>
-                <div class="column is-half is-offset-one-quarter">
-                    <p class="control">
-                        <input type="text" class="input is-large" placeholder="Usuário">
-                    </p>
-                </div>
-                <div class="column is-half is-offset-one-quarter">
-                    <p class="control">
-                        <input type="password" class="input is-large" placeholder="Senha">
-                    </p>
-                </div>
-                <div class="column is-half is-offset-one-quarter">
-                    <p class="control">
-                        <input type="password" class="input is-large" placeholder="Confirmar senha">
-                    </p>
-                </div>
-                <div class="column is-half is-offset-one-quarter">
-                    <a href="" class="button is-primary is-inverted is-outlined is-large is-fullwidth">CADASTRAR</a>
-                    <br>
-                    <a href="" class="button is-link">VOLTAR PARA A TELA DE LOGIN</a>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </section>

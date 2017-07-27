@@ -21,8 +21,8 @@ namespace ModernStore.Api.Controllers
             object result,
             IEnumerable<Notification> notifications)
         {
-            return await new Task<IActionResult>(() =>
-            {
+            //return await new Task<IActionResult>(() =>
+            //{
                 if (!notifications.Any())
                 {
                     try
@@ -53,7 +53,7 @@ namespace ModernStore.Api.Controllers
                         errors = notifications
                     });
                 }
-            });
+            //});
         }
     }
 }

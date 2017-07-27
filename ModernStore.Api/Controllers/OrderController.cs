@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ModernStore.Infra.Transactions;
 using Microsoft.AspNetCore.Mvc;
 using ModernStore.Domain.Commands.Inputs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ModernStore.Api.Controllers
 {
@@ -20,8 +21,10 @@ namespace ModernStore.Api.Controllers
 
         [HttpPost]
         [Route("v1/orders")]
+        [Authorize(Policy = "User")]
         public async Task<IActionResult> Post([FromBody] RegisterOrderCommand command)
         {
+            command.Customer = User.Identity.Name;
             var result = _handler.Handle(command);
             return await ApiResponse(result, _handler.Notifications);
         }

@@ -4,23 +4,59 @@
             <h1 class="title pacifico larger-text">
                 Modern Web Store
             </h1>
-            <div class="columns is-multiline animated fadeInUp">
-                <div class="column is-half is-offset-one-quarter">
-                    <p class="control">
-                        <input type="text" class="input is-large" placeholder="Usuário">
-                    </p>
+            <form [formGroup]="form">
+                 <div class="notification is-danger" *ngIf="errors.length > 0">
+                    <ul>
+                        <li *ngFor="let item of errors">{{item.message}}</li>
+                    </ul>
                 </div>
-                <div class="column is-half is-offset-one-quarter">
-                    <p class="control">
-                        <input type="password" class="input is-large" placeholder="Senha">
-                    </p>
+                <div class="columns is-multiline animated fadeInUp">
+                    <div class="column is-half is-offset-one-quarter">
+                        <p class="control" id="usernameControl">
+                            <input formControlName="username" type="text" class="input is-large" placeholder="Usuário"
+                                [ngClass]="{'is-danger':!form.controls.username.valid && !form.controls.username.pristine}">
+                            <span class="tag is-danger" *ngIf="!form.controls.username.valid && !form.controls.username.pristine">
+                                Usuário inválido</span>
+                        </p>
+                    </div>
+                    <div class="column is-half is-offset-one-quarter">
+                        <p class="control">
+                            <input formControlName="password" type="password" class="input is-large" placeholder="Senha"
+                                [ngClass]="{'is-danger':!form.controls.password.valid && !form.controls.password.pristine}">
+                            <span class="tag is-danger" *ngIf="!form.controls.password.valid && !form.controls.password.pristine">
+                                Senha inválida</span>
+                        </p>
+                    </div>
+                    <div class="column is-half is-offset-one-quarter">
+                        <button (click)="submit()" [disabled]="!form.valid" id="btnSignin"
+                            class="button is-primary is-inverted is-outlined is-large is-fullwidth">ENTRAR</button>
+                        <br>
+                        <a routerLink="/signup" class="button is-link">Ainda não sou cadastrado</a>
+                        <br>
+                        <a (click)="showUseTerms()" class="button is-link">TERMOS DE USO</a>
+                    </div>
                 </div>
-                <div class="column is-half is-offset-one-quarter">
-                    <a routerLink="/home" class="button is-primary is-inverted is-outlined is-large is-fullwidth">ENTRAR</a>
-                    <br>
-                    <a routerLink="/signup" class="button is-link">Ainda não sou cadastrado</a>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </section>
+
+<div class="modal" id="divTermosDeUso">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">TERMOS DE USO DO SITE</p>
+      <button class="delete" (click)="hideUseTerms()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam quos vero corrupti rem rerum suscipit ab quia perferendis nesciunt et.</div>
+      <div>Cumque fuga asperiores illo, est deserunt, quos quasi error necessitatibus sequi saepe perferendis beatae quam tenetur voluptas ex accusamus nisi.</div>
+      <div>Explicabo sequi enim et aperiam similique beatae nulla fugiat vitae, sed, magni porro nostrum rerum natus quia, officia commodi est.</div>
+      <div>Et labore iure illo, sunt dolorem tempore. Laudantium odit ipsa esse culpa sed ex temporibus, asperiores amet explicabo ut repellendus!</div>
+      <app-error-page404></app-error-page404>
+    </section>
+    <footer class="modal-card-foot">
+      <a class="button is-success" (click)="hideUseTerms()">OK</a>
+    </footer>
+  </div>
+</div>

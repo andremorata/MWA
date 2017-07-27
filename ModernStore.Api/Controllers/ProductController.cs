@@ -17,21 +17,10 @@ namespace ModernStore.Api.Controllers
         [HttpGet]
         [Route("v1/products")]
         [Authorize(Policy = "Administradores")]
+        [AllowAnonymous]
         public IActionResult Get()
         {
-            //return Ok(_repository.Get());
-            var isUser = User.HasClaim("ModernStore", "User");
-            var isAdmin = User.HasClaim("ModernStore", "Admins");
-            
-            var ret = new {
-                teste = "OK",
-                user = User.Identity.Name,
-                authType = User.Identity.AuthenticationType,
-                isUser = isUser,
-                isAdmin = isAdmin
-            };
-
-            return Ok(ret);
+            return Ok(_repository.Get());
         }
 
         [HttpGet]

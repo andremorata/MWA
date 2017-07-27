@@ -1,19 +1,20 @@
 <div class="columns is-multiline animated fadeInUp">
-    <div class="column is-3 ">
+    <div class="column is-3" *ngFor="let product of products">
         <div class="card">
             <div class="card-image">
                 <figure class="image is-4by3">
-                    <img src="http://lorempixel.com/1280/960/" alt="Image">
+                    <img src="{{ product.image }}" alt="Image">
                 </figure>
             </div>
             <div class="card-content">
                 <div class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, culpa.
+                    {{ product.title }}
                     <br>
-                    <h1 class="has-text-centered">R$ 299,90</h1>
-                    <a class="button is-success is-fullwidth">
+                    <h1 class="has-text-centered">R$ {{ product.price | number: '1.2' }}</h1>
+                    <button class="button is-success is-fullwidth" (click)="addToCart(product)"
+                        id="prod-{{product.id}}">
                         <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;&nbsp;ADICIONAR
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>

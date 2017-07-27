@@ -1,13 +1,16 @@
 <div class="nav-right nav-menu">
+    <span class="nav-item active" *ngIf="user || user !== ''">Bem vindo, {{ user }}</span>
     <a routerLink="/home" class="nav-item">Home</a>
-    <a routerLink="/cart" class="nav-item">Carrinho</a>
-    <a routerLink="/profile" class="nav-item">Meu Perfil</a>
-    <span class="nav-item">
-        <a routerLink="/" class="button is-primary is-inverted">
+    <a routerLink="/cart" class="nav-item">Carrinho&nbsp;
+        <span class='tag is-danger animated pulse infinite' *ngIf="totalItems > 0">{{ totalItems }}</span></a>
+    <a routerLink="/profile" class="nav-item" *ngIf="user || user !== ''">Meu Perfil</a>
+    <span class="nav-item" *ngIf="user || user !== ''">
+        <button (click)="logoff()" class="button is-primary is-inverted">
             <span class="icon">
                 <i class="fa fa-power-off"></i>
             </span>
             <span>Sair</span>
-        </a>
+        </button>
     </span>
+    <a routerLink="/" class="nav-item" *ngIf="!user || user === ''">Login</a>
 </div>

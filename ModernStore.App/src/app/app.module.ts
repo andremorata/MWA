@@ -25,8 +25,16 @@ import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { ErrorPage404Component } from './pages/error-page404/error-page404.component';
 
+// services
+import { CartService } from './services/cart.service';
+import { AuthService } from './services/auth.service';
+
+// directives
+import { NumberDirective } from './directives/number.directive';
+
 @NgModule({
     declarations: [
+        NumberDirective,
         AppComponent,
         HeadBarComponent,
         SubMenuComponent,
@@ -45,7 +53,10 @@ import { ErrorPage404Component } from './pages/error-page404/error-page404.compo
         HttpModule,
         Routing
     ],
-    providers: [],
+    providers: [
+        CartService,
+        AuthService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
